@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import logo from '../../assets/netflix-logo.svg'
 import Input from '../../Components/Input/Input'
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
   return (
     <>
   <div className="absolute h-full w-full bg-[url('/src/assets/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
-       <div className='bg-black w-full h-full lg:bg-opacity-50'>
+       <div className='bg-black bg-gradient-to-t from-black via-transparent to-black w-full h-full bg-opacity-40'>
         <nav className='px-12 py-5'>
             <img src={logo} alt="logo" className='h-12'/>
         </nav>
@@ -40,7 +42,7 @@ const LoginPage = () => {
               </button>
               <p className='text-neutral-500 mt-12'>
                 First time using Netflix?
-                <span className='text-white ml-1 hover:underline cirsor-pointer'>
+                <span className='text-white ml-1 hover:underline cirsor-pointer' onClick={() => navigate("/register")}>
                 Create an account
                 </span>
               </p>

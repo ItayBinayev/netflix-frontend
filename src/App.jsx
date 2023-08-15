@@ -2,10 +2,10 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Navbar from './Components/Navbar/navbar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './Pages/LoginPage/LoginPage'
 import RegisterPage from './Pages/RegisterPage/RegisterPage'
+import HomePage from './Pages/HomePage/HomePage'
 
 
 function App() {
@@ -14,8 +14,9 @@ function App() {
   return (
     <BrowserRouter>
     <>
-    <Navbar/>
     <Routes>
+    <Route path="/" element={<HomePage/>}></Route>
+
     <Route path="/login" element={<LoginPage/>}></Route>
     <Route path="/register" element={<RegisterPage/>}></Route>
     
