@@ -82,7 +82,7 @@ const Navbar = () => {
        </div>
        <div className='flex flex-row ml-auto gap-7 items-center'>
         <div className='text-gray-200 hover:text-gray-300 cursor-pointer transition'>
-          <BsSearch onClick={}/>
+          <BsSearch/>
         </div>
         <div className='text-gray-200 hover:text-gray-300 cursor-pointer transition'>
           <BsBell/>
