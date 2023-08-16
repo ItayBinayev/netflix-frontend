@@ -12,7 +12,7 @@ const LoginPage = () => {
   return (
     <>
   <div className="absolute h-full w-full bg-[url('/src/assets/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
-       <div className='bg-black bg-gradient-to-t from-black via-transparent to-black w-full h-full bg-opacity-40'>
+       <div className='bg-black bg-opacity-50 w-full h-full'>
         <nav className='px-12 py-5'>
             <img src={logo} alt="logo" className='h-12'/>
         </nav>
