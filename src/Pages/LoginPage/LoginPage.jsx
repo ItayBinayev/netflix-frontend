@@ -1,18 +1,41 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import logo from '../../assets/netflix-logo.svg'
 import Input from '../../Components/Input/Input'
 import { useNavigate } from 'react-router-dom';
+import { Store } from '../../Context/Store'
+
 
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const {state, dispatch: ctxDispatch} = useContext(Store);
+    const {userInfo} = state;
+
+    const submitHandler = async() => {
+      try{
+          const {data} = await axios.post("/users/signin", {email, password});
+          ctxDispatch({type: USER_SIGNIN, payload: data});
+          navigate("/");
+      }
+      catch(error){
+          toast.error(error.message, {
+              theme: "colored",
+              hideProgressBar: true,
+              autoClose: 3000,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+            });
+      }
+  }
 
   return (
     <>
   <div className="absolute h-full w-full bg-[url('/src/assets/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
-       <div className='bg-black bg-opacity-50 w-full h-full'>
+       <div className='bg-black lg:bg-opacity-50 w-full h-full'>
         <nav className='px-12 py-5'>
             <img src={logo} alt="logo" className='h-12'/>
         </nav>
