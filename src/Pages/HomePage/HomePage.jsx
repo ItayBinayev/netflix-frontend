@@ -11,11 +11,12 @@ const HomePage = () => {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {userInfo} = state;
+  console.log(error)
    useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     }
-  }, []);
+  }, [state]);
 
   return (
     <div>
@@ -24,7 +25,8 @@ const HomePage = () => {
         {
           isLoading? 
           <h1>Loading</h1>
-          :
+          : error ? <h1>Error</h1>
+          : userInfo &&
           ( data.map((listC) =>
           <FeaturedContent data={listC} key={listC._id}/>
           )

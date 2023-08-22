@@ -3,7 +3,8 @@ import logo from '../../assets/netflix-logo.svg'
 import Input from '../../Components/Input/Input'
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../../Context/Store'
-
+import axios from 'axios';
+import { USER_SIGNIN } from '../../Reducers/Actions';
 
 
 const LoginPage = () => {
@@ -11,24 +12,23 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const {state, dispatch: ctxDispatch} = useContext(Store);
-    const {userInfo} = state;
 
     const submitHandler = async() => {
       try{
-          const {data} = await axios.post("/users/signin", {email, password});
-          ctxDispatch({type: USER_SIGNIN, payload: data});
+          const {data} = await axios.post("/users/signin", {identifier: email, password});
+          await ctxDispatch({type: USER_SIGNIN, payload: data});
           navigate("/");
       }
       catch(error){
-          toast.error(error.message, {
-              theme: "colored",
-              hideProgressBar: true,
-              autoClose: 3000,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-            });
+        toast.error(error.message, {
+          theme: "colored",
+          hideProgressBar: true,
+          autoClose: 3000,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });          
       }
   }
 
@@ -60,7 +60,7 @@ const LoginPage = () => {
                 value={password}
                 />
             </div>
-            <button className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
+            <button className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition" onClick={submitHandler}>
                 Sign In
               </button>
               <p className='text-neutral-500 mt-12'>

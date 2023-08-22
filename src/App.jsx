@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './Pages/LoginPage/LoginPage'
 import RegisterPage from './Pages/RegisterPage/RegisterPage'
 import HomePage from './Pages/HomePage/HomePage'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
     </Routes>
     
     </>
+    <ToastContainer/>
     </BrowserRouter>
   )
 }
