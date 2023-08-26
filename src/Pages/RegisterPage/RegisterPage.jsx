@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/netflix-logo.svg";
 import Input from "../../Components/Input/Input";
 import { MdOutlineEmail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { USER_SIGNIN } from "../../Reducers/Actions";
+import { Store } from "../../Context/Store";
+import axios from "axios";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const {state, dispatch: ctxDispatch} = useContext(Store);
+  
   const [vis, setVis] = useState(false);
   const navigate = useNavigate();
 
@@ -99,13 +104,23 @@ const RegisterPage = () => {
               ) : (
                 <button
                   className="bg-red-600 text-2xl text-white rounded-md w-40 hover:bg-red-700 transition flex flex-row justify-center items-center"
-                  onClick={() => {
+                  onClick={ async () => {
                     if (passwordError) {
                       console.log(
                         "Please fill correct password before pressing the button!"
                       );
                     } else {
-                      //post on server then redirect to homepage
+                      try{
+
+                        const {data} = await axios.post("/users/signup", {email: email, password: password});
+                        await ctxDispatch({type: USER_SIGNIN, payload: data});
+                        navigate("/");
+                      }
+                      catch(error)
+                      {
+                        
+                        console.log(error)
+                      }
                     }
                   }}
                 >
