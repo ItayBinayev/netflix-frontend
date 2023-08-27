@@ -118,7 +118,6 @@ const RegisterPage = () => {
                       }
                       catch(error)
                       {
-                        
                         console.log(error)
                       }
                     }

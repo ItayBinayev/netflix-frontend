@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+    overflow-x: hidden;
+  }
+
+@layer components {
+    [class^="swiper-button-"] {
+      @apply -m-16 h-full w-11 top-0 bottom-0 my-auto hover:bg-black opacity-80 hover:opacity-100 cursor-pointer transition content-none rounded-md;
+    }
+  }
+  
+  @layer utilities {
+    .swiper-slide-z-transition {
+      z-index: 15;
+      transition-property: z-index;
+      transition-duration: 200ms;
+      transition-delay: 300ms;
+    }
+  
+    .swiper-slide-z-transition:hover {
+      z-index: 20; /* Set to a higher value to ensure it's above neighboring components */
+    }
+  
+    .swiper-z-transition {
+      z-index: 15; /* Set to the desired starting value */
+      transition-property: z-index;
+      transition-duration: 200ms; /* Match the ContentCard's transition duration */
+      transition-delay: 300ms; /* Match the ContentCard's transition delay */
+    }
+  
+    .swiper-z-transition:hover {
+      z-index: 20;
+    }
+  }
