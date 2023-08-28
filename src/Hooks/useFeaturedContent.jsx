@@ -3,8 +3,8 @@ import useSWR from "swr";
 import fetcher from '../libs/fetcher';
 
 
-const useFeaturedContent = () => {
-    const { data , error , isLoading } = useSWR("/content/featured" , fetcher,{
+const useFeaturedContent = (type) => {
+    const { data , error , isLoading } = useSWR(`/content/featured/${type}` , fetcher,{
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,

@@ -8,6 +8,9 @@ import RegisterPage from './Pages/RegisterPage/RegisterPage'
 import HomePage from './Pages/HomePage/HomePage'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MoviesPage from './Pages/MoviesPage/MoviesPage';
+import SeriesPage from './Pages/SeriesPage/SeriesPage';
+import ContentPlayerPage from './Pages/ContentPlayerPage/ContentPlayerPage';
 
 
 function App() {
@@ -21,6 +24,9 @@ function App() {
 
     <Route path="/login" element={<LoginPage/>}></Route>
     <Route path="/register" element={<RegisterPage/>}></Route>
+    <Route path="/movies" element={<MoviesPage/>}></Route>
+    <Route path="/series" element={<SeriesPage/>}></Route>
+    <Route path="/content/:contentId" element={<ContentPlayerPage/>}></Route>
     
     </Routes>
     

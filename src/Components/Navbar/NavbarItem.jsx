@@ -1,9 +1,9 @@
 
 import React from 'react'
 
-const NavbarItem = ({title}) => {
+const NavbarItem = ({title,redirect}) => {
   return (
-    <div className='text-white cursor-pointer hover:text-gray-300 transition'>
+    <div onClick={redirect} className='text-white cursor-pointer hover:text-gray-300 transition'>
         {title}
         </div>
   )

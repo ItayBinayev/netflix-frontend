@@ -4,8 +4,8 @@ import { AiOutlineInfoCircle } from "react-icons/ai"
 import ReactPlayer from "react-player";
 import { BsFillPlayFill } from "react-icons/bs";
 
-const Billboard = () => {
-  const { data } = useBillboard();
+const Billboard = ({type}) => {
+  const { data } = useBillboard(type);
   const [titlePosition, setTitlePosition] = useState("lg:translate-y-40");
   const [descriptionOpacity, setDescriptionOpacity] = useState("lg:opacity-0");
 

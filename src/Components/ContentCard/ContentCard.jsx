@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BsFillPlayFill } from 'react-icons/bs'
 import ReactPlayer from 'react-player';
+import { useNavigate } from 'react-router-dom';
 
 const ContentCard = ({data, isFirstInGroup, isLastInGroup }) => {
     const [showVideo, setShowVideo] = useState(false);
@@ -10,6 +11,13 @@ const ContentCard = ({data, isFirstInGroup, isLastInGroup }) => {
     const handleMouseLeave = () => setShowVideo(false);
   
     const [rating, setRating] = useState(0);
+    const navigate = useNavigate()
+
+    const playHandler = async () => {
+        const idData = await data._id;
+        navigate(`/content/${idData}`)
+    }
+
     useEffect(() => {
         // Use your rating calculation logic here, for example:
         const calculatedRating = 90 + Math.floor(Math.random() * 10); // Random rating between 0 and 100
@@ -24,6 +32,7 @@ const ContentCard = ({data, isFirstInGroup, isLastInGroup }) => {
       : "group-hover:translate-x-[-3vw]";
   }
 
+  
 
   return (
     <div
@@ -55,7 +64,7 @@ const ContentCard = ({data, isFirstInGroup, isLastInGroup }) => {
           <div className="flex flex-row items-center gap-3">
             <div
               className="cursor-pointer my-1 w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black"
-              onClick={() => {}}
+              onClick={playHandler}
             >
               <BsFillPlayFill size={30} />
             </div>
