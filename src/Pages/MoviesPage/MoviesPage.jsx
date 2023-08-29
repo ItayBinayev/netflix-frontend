@@ -20,7 +20,6 @@ const MoviesPage = () => {
 
   return (
     <div>
-        <Navbar/>
         <Billboard type="movie"/>
         {
           isLoading? 

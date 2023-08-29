@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import MoviesPage from './Pages/MoviesPage/MoviesPage';
 import SeriesPage from './Pages/SeriesPage/SeriesPage';
 import ContentPlayerPage from './Pages/ContentPlayerPage/ContentPlayerPage';
+import Navbar from './Components/Navbar/navbar';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   return (
     <BrowserRouter>
     <>
+    <Navbar/>
     <Routes>
     <Route path="/" element={<HomePage/>}></Route>
 

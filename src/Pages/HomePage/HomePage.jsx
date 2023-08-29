@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { Store } from '../../Context/Store'
 
 const HomePage = () => {
-  const { data, error, isLoading } = useFeaturedContent("random");
+  const { data, error, isLoading } = useFeaturedContent("all");
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {userInfo} = state;
@@ -20,8 +20,7 @@ const HomePage = () => {
 
   return (
     <div>
-        <Navbar/>
-        <Billboard type="random"/>
+        <Billboard type="all"/>
         {
           isLoading? 
           <h1>Loading</h1>

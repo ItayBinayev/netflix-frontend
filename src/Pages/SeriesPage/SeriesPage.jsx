@@ -20,7 +20,6 @@ const SeriesPage = () => {
 
   return (
     <div>
-        <Navbar/>
         <Billboard type="series"/>
         {
           isLoading? 

@@ -5,7 +5,7 @@ import NavbarItem from './NavbarItem'
 import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs'
 import MobileMenu from '../MobileMenu/MobileMenu'
 import AccountMenu from '../AccountMenu/AccountMenu'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const TOP_OFFSET = 66;
 
@@ -14,6 +14,8 @@ const Navbar = () => {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const { pathname } = useLocation()
+  const [lastURL, setLastURL] = useState("")
 
   const searchHandler = () => {
     setSearchActive(!searchActive);
@@ -21,6 +23,7 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     const handleScroll = () => {
       if(window.scrollY >= TOP_OFFSET){
@@ -35,15 +38,34 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     }
   },[]);
-
+  
   const toggleMobileMenu = useCallback(() => {
     setShowMobileMenu((current) => !current);
   },[]);
-
+  
   const toggleAccountMenu = useCallback(() => {
     setShowAccountMenu((current) => !current);
   },[]);
 
+  const onChangeHandler = (e) => {
+    if(e.target.value == '')
+    {
+      navigate(lastURL);
+      setLastURL("")
+    }
+    else{
+      if(pathname != "/search")
+      {
+        setLastURL(pathname)
+      }
+      navigate("/search?query=" + e.target.value)
+    }
+  }
+  
+  if(pathname == '/register' || pathname == '/login' || pathname == '/content')
+  {
+    return null;
+  }
 
   return (
     <nav className="w-full fixed z-20">
@@ -97,6 +119,7 @@ const Navbar = () => {
                 searchActive ? "visible" : "invisible pointer-events-none"
               }`}
               placeholder="Titles, people, genres"
+              onChange={onChangeHandler}
             />
           </div>
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
