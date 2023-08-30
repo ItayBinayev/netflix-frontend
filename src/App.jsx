@@ -12,6 +12,7 @@ import MoviesPage from './Pages/MoviesPage/MoviesPage';
 import SeriesPage from './Pages/SeriesPage/SeriesPage';
 import ContentPlayerPage from './Pages/ContentPlayerPage/ContentPlayerPage';
 import Navbar from './Components/Navbar/navbar';
+import SearchPage from './Pages/SearchPage/SearchPage';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
     <Route path="/movies" element={<MoviesPage/>}></Route>
     <Route path="/series" element={<SeriesPage/>}></Route>
     <Route path="/content/:contentId" element={<ContentPlayerPage/>}></Route>
+    <Route path="/search" element={<SearchPage/>}></Route>
     
     </Routes>
     

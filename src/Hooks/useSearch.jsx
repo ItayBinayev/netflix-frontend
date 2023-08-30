@@ -1,8 +1,8 @@
 import useSWR from "swr";
 import fetcher from "../libs/fetcher";
 
-const useSearch = (query, page) => {
-  const { data, error, isLoading } = useSWR(`/content/search?query=${query}&page=${page}`, fetcher, {
+const useSearch = (query) => {
+  const { data, error, isLoading } = useSWR(`/content/search?query=${query}`, fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
