@@ -6,6 +6,7 @@ export const Store = createContext();
 
 const initState = {
     userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')) : null,
+    isMuted: true
 }
 
 export function StoreProvider( props ) {
