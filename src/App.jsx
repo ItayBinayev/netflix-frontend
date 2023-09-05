@@ -13,6 +13,7 @@ import SeriesPage from './Pages/SeriesPage/SeriesPage';
 import ContentPlayerPage from './Pages/ContentPlayerPage/ContentPlayerPage';
 import Navbar from './Components/Navbar/navbar';
 import SearchPage from './Pages/SearchPage/SearchPage';
+import MyListPage from './Pages/MyListPage/MyListPage';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
     <Route path="/series" element={<SeriesPage/>}></Route>
     <Route path="/content/:contentId" element={<ContentPlayerPage/>}></Route>
     <Route path="/search" element={<SearchPage/>}></Route>
+    <Route path="/mylist" element={<MyListPage/>}></Route>
     
     </Routes>
     

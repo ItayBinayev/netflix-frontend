@@ -92,6 +92,8 @@ const Navbar = () => {
           <NavbarItem title="Home" redirect={() => navigate('/')} />
           <NavbarItem title="Series" redirect={() => navigate('/series')}/>
           <NavbarItem title="Movies" redirect={() => navigate('/movies')}/>
+          <NavbarItem title="My List" redirect={() => navigate('/mylist')}/>
+
         </div>
 
         <div

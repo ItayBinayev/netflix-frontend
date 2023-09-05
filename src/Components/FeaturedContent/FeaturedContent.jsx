@@ -15,6 +15,7 @@ const FeaturedContent = ({data}) => {
   {
     return null;
   }
+  
   return (
     <div className="text-white px-4 py-4 md:px-12">
     <p className="text-base md:text-xl lg:text-2xl font-semibold mb-2">

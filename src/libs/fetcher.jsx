@@ -15,5 +15,12 @@ const fetcher = async (url) =>{
     : (await axios.get(url)).data
 
 }
+export const fetcherPost = async (url, data) => {
+  const headers = getHeaders();
+  return headers
+    ? (await axios.post(url ,data ,headers)).data
+    : (await axios.post(url ,data)).data
+
+}
 
 export default fetcher; 

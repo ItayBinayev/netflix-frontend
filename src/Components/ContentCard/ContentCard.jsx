@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsFillPlayFill } from "react-icons/bs";
-import { GoMute , GoUnmute} from 'react-icons/go'
+import { GoMute, GoUnmute } from "react-icons/go";
 import ReactPlayer from "react-player/youtube";
+import FavouriteButton from "../FavouriteButton/FavouriteButton";
+import { Store } from "../../Context/Store";
 
 const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
   const [showVideo, setShowVideo] = useState(false);
   const [muted, setMuted] = useState(true);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
   const isMobile = window.innerWidth <= 640;
   const navigate = useNavigate();
 
@@ -38,6 +41,7 @@ const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
       : "group-hover:translate-x-[-3vw]";
   }
 
+ 
   return (
     <div
       className="group bg-zinc-900 relative w-full h-[10vw]"
@@ -62,7 +66,7 @@ const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
           />
           {showVideo && !isMobile && (
             <>
-              <ReactPlayer 
+              <ReactPlayer
                 url={data.movie}
                 controls={false}
                 disablePictureInPicture={true}
@@ -74,32 +78,27 @@ const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
                 volume={0.3}
                 loop={true}
               />
-              <button 
+              <button
                 className="absolute flex items-center justify-center left-0 bottom-0 cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full transition hover:bg-neutral-300 text-black lg:ml-4 ml-2 mb-2"
                 onClick={() => setMuted(!muted)}
               >
-                {muted ? (<GoMute size={25}/>) : (<GoUnmute size={25}/>)}
+                {muted ? <GoMute size={25} /> : <GoUnmute size={25} />}
               </button>
             </>
           )}
-          
         </div>
         <div className="z-10 flex flex-col bg-zinc-800 gap-1 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
-          <div className="flex flex-row items-center space-x-3">
-            
+          <div className="flex flex-row items-center space-x-3"></div>
+          <div
+            className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
+            onClick={() => navigate("/content/" + data._id)}
+          >
+            <BsFillPlayFill size={25} />
           </div>
-            <div
-              className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
-              onClick={() => navigate("/content/" + data._id)}
-            >
-              <BsFillPlayFill size={25} />
-            </div>
-
+            <FavouriteButton movie={data} state={state} ctxDispatch={ctxDispatch}/>
           <div className="flex flex-row gap-2 items-center">
             <p className="text-green-400 font-semibold">{rating}% Match</p>
-            <p className="text-white text-[10px] lg:text-sm">
-              {data.duration}
-            </p>
+            <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
           </div>
           <p className="text-white text-[10px] lg:text-sm">{data.genre}</p>
         </div>
