@@ -1,11 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Store } from '../../Context/Store'
 import ContentCard from '../../Components/ContentCard/ContentCard';
+import { useNavigate } from 'react-router-dom';
 
 const MyListPage = () => {
     const { state , dispatch } = useContext(Store);
     const { userInfo } = state;
-    
+    const navigate = useNavigate()
+
+    useEffect(() => {
+      if (!userInfo) {
+        navigate("/login");
+      }
+    }, [state]);
+  
+
   return (
     <>
       <div className="h-24"></div>

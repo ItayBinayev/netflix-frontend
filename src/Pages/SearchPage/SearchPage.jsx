@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useSearch from "../../Hooks/useSearch";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ContentCard from "../../Components/ContentCard/ContentCard";
 import NetflixSpinner from "../../Components/NetflixSpinner/NetflixSpinner";
+import { Store } from "../../Context/Store";
 
 const SearchPage = () => {
   const { search } = useLocation();
   const searchParams = new URLSearchParams(search);
+  const { state } = useContext(Store);
+  const { userInfo } = state;
+  const navigate = useNavigate()
   const query = searchParams.get("query");
   const { data, error, isLoading } = useSearch(query);
   console.log(data);
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+    }
+  }, [data]);
 
   return (
     <>
@@ -24,7 +33,7 @@ const SearchPage = () => {
           <h1>Error...</h1>
         ) : (
           data &&
-          data.contents.map((c) => (
+          data?.contents.map((c) => (
             <div>
               <ContentCard data={c} />
             </div>

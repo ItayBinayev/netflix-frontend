@@ -11,8 +11,11 @@ const HomePage = () => {
   const { data: dataF, error: errorF, isLoading: isLoadingF } = useFavourite();
   const { data, error, isLoading } = useFeaturedContent("all");
   const navigate = useNavigate();
+  
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {userInfo} = state;
+  const { userList } = userInfo;
+  console.log(userList);
 
 
   console.log(error)
@@ -25,13 +28,17 @@ const HomePage = () => {
   return (
     <div>
         <Billboard type="all"/>
-        {
+        {/* {
           isLoadingF?
           <h1>Loading My List...</h1>
           : errorF ? <h1>Error</h1>
           : userInfo &&
           (<FeaturedContent data={dataF}/>)
-        }
+        } */}
+        {/* {
+          userInfo.userList &&
+          (<FeaturedContent data={userInfo?.userList}/>)
+        } */}
           
         {
           isLoading? 
