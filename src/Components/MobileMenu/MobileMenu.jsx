@@ -14,6 +14,9 @@ const MobileMenu = ({ visible }) => {
             </div> <div onClick={() => navigate("/movies")} className="px-3 text-center text-white hover:underline">
             Movies
             </div>
+            <div onClick={() => navigate("/mylist")} className="px-3 text-center text-white hover:underline">
+            My List
+            </div>
     </div>
   );
 };
