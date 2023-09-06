@@ -8,10 +8,10 @@ import RegisterPage from './Pages/RegisterPage/RegisterPage'
 import HomePage from './Pages/HomePage/HomePage'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './Components/Navbar/Navbar';
 import MoviesPage from './Pages/MoviesPage/MoviesPage';
 import SeriesPage from './Pages/SeriesPage/SeriesPage';
 import ContentPlayerPage from './Pages/ContentPlayerPage/ContentPlayerPage';
-import Navbar from './Components/Navbar/navbar';
 import SearchPage from './Pages/SearchPage/SearchPage';
 import MyListPage from './Pages/MyListPage/MyListPage';
 
