@@ -14,8 +14,6 @@ const HomePage = () => {
   
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {userInfo} = state;
-  const { userList } = userInfo;
-  console.log(userList);
 
 
   console.log(error)

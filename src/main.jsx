@@ -5,7 +5,8 @@ import './index.css'
 import axios from 'axios'
 import { StoreProvider } from './Context/Store.jsx'
 
-axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.baseURL = import.meta.env.VITE_API_ROUTE ? `${import.meta.env.VITE_API_ROUTE}/api` : "https://netflix-backend-eta.vercel.app/api";
+console.log(import.meta.env.VITE_API_ROUTE)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

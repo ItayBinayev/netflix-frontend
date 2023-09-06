@@ -5,9 +5,8 @@ import { fetcherPost } from '../../libs/fetcher';
 
 const FavouriteButton = ({movie, state, ctxDispatch}) => {
   const { userInfo } = state;
-  const { userList } = userInfo;
 
-  const isFavourite = userList.some(
+  const isFavourite = userInfo?.userList.some(
     (favContent) => favContent._id === movie._id
   );
 
