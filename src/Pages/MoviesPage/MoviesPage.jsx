@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-import Navbar from '../../Components/Navbar/navbar'
 import Billboard from '../../Components/Billboard/Billboard'
 import useFeaturedContent from '../../Hooks/useFeaturedContent'
 import FeaturedContent from '../../Components/FeaturedContent/FeaturedContent'
