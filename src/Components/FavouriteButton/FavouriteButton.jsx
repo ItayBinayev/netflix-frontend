@@ -33,8 +33,8 @@ const FavouriteButton = ({movie, state, ctxDispatch}) => {
     group/item
     w-6
     h-6
-    lg:w-10
-    lg:h-10
+    lg:w-8
+    lg:h-8
     border-white
     border-2
     rounded-full
@@ -43,6 +43,7 @@ const FavouriteButton = ({movie, state, ctxDispatch}) => {
     items-center
     transition
     hover:border-neutral-300
+    gap-3
     '>
       {
         isFavourite ?

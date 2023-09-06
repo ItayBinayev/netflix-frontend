@@ -88,7 +88,7 @@ const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
           )}
         </div>
         <div className="z-10 flex flex-col bg-zinc-800 gap-1 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
-          <div className="flex flex-row items-center space-x-3"></div>
+          <div className="flex flex-row items-center space-x-3">
           <div
             className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
             onClick={() => navigate("/content/" + data._id)}
@@ -96,6 +96,7 @@ const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
             <BsFillPlayFill size={25} />
           </div>
             <FavouriteButton movie={data} state={state} ctxDispatch={ctxDispatch}/>
+            </div>
           <div className="flex flex-row gap-2 items-center">
             <p className="text-green-400 font-semibold">{rating}% Match</p>
             <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
