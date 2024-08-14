@@ -9,9 +9,9 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 const TOP_OFFSET = 66;
 
-const Navbar = () => {
+const Navbar = ({clickStateAccountMenu, setClickStateAccountMenu}) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [showAccountMenu, setShowAccountMenu] = useState(false);
+  //const [showAccountMenu, setShowAccountMenu] = useState(clickStateAccountMenu);
   const [showBackground, setShowBackground] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
   const { pathname } = useLocation()
@@ -43,9 +43,17 @@ const Navbar = () => {
     setShowMobileMenu((current) => !current);
   },[]);
   
-  const toggleAccountMenu = useCallback(() => {
-    setShowAccountMenu((current) => !current);
-  },[]);
+  // const toggleAccountMenu = useCallback(() => {
+  //   setShowAccountMenu((current) => !current);
+  // },[]);
+
+  const toggleAccountMenu = useCallback(
+    (e) => {
+      e.stopPropagation(); // Prevent event from bubbling up
+      setClickStateAccountMenu((current) => !current);
+    },
+    [setClickStateAccountMenu]
+  );
 
   const onChangeHandler = (e) => {
     if(e.target.value == '')
@@ -136,10 +144,10 @@ const Navbar = () => {
             </div>
             <BsChevronDown
               className={`text-white transition ${
-                showAccountMenu ? "rotate-180" : "rotate-0"
+                clickStateAccountMenu ? "rotate-180" : "rotate-0"
               }`}
             />
-            <AccountMenu visible={showAccountMenu} />
+            <AccountMenu visible={clickStateAccountMenu} />
           </div>
         </div>
       </div>

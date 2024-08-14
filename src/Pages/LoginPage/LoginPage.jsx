@@ -65,7 +65,7 @@ const LoginPage = () => {
               </button>
               <p className='text-neutral-500 mt-12'>
                 First time using Netflix?
-                <span className='text-white ml-1 hover:underline cirsor-pointer' onClick={() => navigate("/register")}>
+                <span className='text-white ml-1 hover:underline cursor-pointer' onClick={() => navigate("/register")}>
                 Create an account
                 </span>
               </p>

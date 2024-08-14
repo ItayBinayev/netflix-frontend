@@ -99,7 +99,7 @@ const RegisterPage = () => {
                     }
                   }}
                 >
-                  <MdOutlineEmail /> {">"}
+                  <MdOutlineEmail />
                 </button>
               ) : (
                 <button

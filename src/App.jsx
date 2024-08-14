@@ -17,12 +17,23 @@ import MyListPage from './Pages/MyListPage/MyListPage';
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [clickStateAccountMenu, setClickStateAccountMenu] = useState(false);
+
+  const handleAppClick = () => {
+    if (clickStateAccountMenu) {
+      setClickStateAccountMenu(false);
+    }
+  };
 
   return (
     <BrowserRouter>
+    <div onClick={handleAppClick}>
     <>
-    <Navbar/>
+    <Navbar
+    clickStateAccountMenu={clickStateAccountMenu}
+    setClickStateAccountMenu={setClickStateAccountMenu}
+
+    />
     <Routes>
     <Route path="/" element={<HomePage/>}></Route>
 
@@ -37,6 +48,7 @@ function App() {
     </Routes>
     
     </>
+    </div>
     <ToastContainer/>
     </BrowserRouter>
   )
