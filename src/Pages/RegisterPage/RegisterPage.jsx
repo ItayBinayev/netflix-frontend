@@ -12,8 +12,8 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const {state, dispatch: ctxDispatch} = useContext(Store);
-  
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+
   const [vis, setVis] = useState(false);
   const navigate = useNavigate();
 
@@ -104,21 +104,21 @@ const RegisterPage = () => {
               ) : (
                 <button
                   className="bg-red-600 text-2xl text-white rounded-md w-40 hover:bg-red-700 transition flex flex-row justify-center items-center"
-                  onClick={ async () => {
+                  onClick={async () => {
                     if (passwordError) {
                       console.log(
                         "Please fill correct password before pressing the button!"
                       );
                     } else {
-                      try{
-
-                        const {data} = await axios.post("/users/signup", {email: email, password: password});
-                        await ctxDispatch({type: USER_SIGNIN, payload: data});
+                      try {
+                        const { data } = await axios.post("/users/signup", {
+                          email: email,
+                          password: password,
+                        });
+                        await ctxDispatch({ type: USER_SIGNIN, payload: data });
                         navigate("/");
-                      }
-                      catch(error)
-                      {
-                        console.log(error)
+                      } catch (error) {
+                        console.log(error);
                       }
                     }
                   }}

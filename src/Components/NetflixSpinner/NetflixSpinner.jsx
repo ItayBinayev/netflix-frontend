@@ -1,12 +1,8 @@
-import React from 'react'
-import './NetflixSpinner.css'
+import React from "react";
+import "./NetflixSpinner.css";
 
 const NetflixSpinner = () => {
-  return (
-    <div id="spinner">
+  return <div id="spinner"></div>;
+};
 
-    </div>
-  )
-}
-
-export default NetflixSpinner
+export default NetflixSpinner;

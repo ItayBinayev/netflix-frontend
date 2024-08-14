@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import useBillboard from "../../Hooks/UseBillboard";
-import { AiOutlineInfoCircle } from "react-icons/ai"
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import ReactPlayer from "react-player";
 import { BsFillPlayFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-const Billboard = ({type}) => {
+const Billboard = ({ type }) => {
   const { data } = useBillboard(type);
   const [titlePosition, setTitlePosition] = useState("lg:translate-y-40");
   const [descriptionOpacity, setDescriptionOpacity] = useState("lg:opacity-0");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -20,9 +20,8 @@ const Billboard = ({type}) => {
     return () => clearTimeout(timeout); // Clear the timeout on unmount
   }, []);
 
-
   return (
-      <div className="relative sm:h-[42vw] h-[60vw]">
+    <div className="relative sm:h-[42vw] h-[60vw]">
       <ReactPlayer
         className="absolute object-cover pointer-events-none"
         muted
@@ -51,7 +50,10 @@ const Billboard = ({type}) => {
         <div
           className={`flex flex-row items-center gap-3 ${descriptionOpacity} transition-opacity duration-[2300ms]`}
         >
-          <button className="bg-white text-black bg-opacity-100 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row items-center hover:bg-opacity-20" onClick={() => navigate(`/content/${data._id}`)}>
+          <button
+            className="bg-white text-black bg-opacity-100 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row items-center hover:bg-opacity-20"
+            onClick={() => navigate(`/content/${data._id}`)}
+          >
             <BsFillPlayFill className="mr-1" />
             Play
           </button>

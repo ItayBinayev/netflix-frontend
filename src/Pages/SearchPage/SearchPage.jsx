@@ -10,7 +10,7 @@ const SearchPage = () => {
   const searchParams = new URLSearchParams(search);
   const { state } = useContext(Store);
   const { userInfo } = state;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const query = searchParams.get("query");
   const { data, error, isLoading } = useSearch(query);
   console.log(data);
@@ -23,11 +23,13 @@ const SearchPage = () => {
   return (
     <>
       <div className="h-24"></div>
-      <h1 className="text-white text-2xl mt-20 mx-8">Showing results of: "{query}"</h1>
+      <h1 className="text-white text-2xl mt-20 mx-8">
+        Showing results of: "{query}"
+      </h1>
       <div className="grid grid-cols-4 gap-2 mt-2 mx-10 lg:mx-16">
         {isLoading ? (
           <div>
-            <NetflixSpinner/>
+            <NetflixSpinner />
           </div>
         ) : error ? (
           <h1>Error...</h1>
@@ -39,7 +41,6 @@ const SearchPage = () => {
             </div>
           ))
         )}
-
       </div>
     </>
   );

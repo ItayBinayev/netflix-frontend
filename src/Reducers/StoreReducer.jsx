@@ -1,5 +1,4 @@
 import {
-  
   ADD_FAVOURITE,
   REMOVE_FAVOURITE,
   USER_SIGNIN,
@@ -17,21 +16,26 @@ export const StoreReducer = (state, { type, payload }) => {
       return { ...state, userInfo: null };
     }
     case ADD_FAVOURITE: {
-        console.log("add to favourites")
-        const { userInfo } = state;
-        const { userList } = userInfo;
-        const favorites = [...userList , payload];
-        localStorage.setItem("userInfo", JSON.stringify({ ...userInfo, userList: favorites }));
-        return  {...state, userInfo: { ...userInfo, userList: favorites } };
-    }
-    case REMOVE_FAVOURITE:
-    {
-      console.log("remove from favourites")
+      console.log("add to favourites");
       const { userInfo } = state;
       const { userList } = userInfo;
-      const favorites = userList.filter(f => f._id != payload._id);
-      localStorage.setItem("userInfo", JSON.stringify({ ...userInfo, userList: favorites }));
-      return  {...state, userInfo: { ...userInfo, userList: favorites } };
+      const favorites = [...userList, payload];
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({ ...userInfo, userList: favorites })
+      );
+      return { ...state, userInfo: { ...userInfo, userList: favorites } };
+    }
+    case REMOVE_FAVOURITE: {
+      console.log("remove from favourites");
+      const { userInfo } = state;
+      const { userList } = userInfo;
+      const favorites = userList.filter((f) => f._id != payload._id);
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({ ...userInfo, userList: favorites })
+      );
+      return { ...state, userInfo: { ...userInfo, userList: favorites } };
     }
     default:
       return state;
