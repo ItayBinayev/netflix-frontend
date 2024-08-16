@@ -24,17 +24,6 @@ const HomePage = () => {
   return (
     <div>
       <Billboard type="all" />
-      {/* {
-          isLoadingF?
-          <h1>Loading My List...</h1>
-          : errorF ? <h1>Error</h1>
-          : userInfo &&
-          (<FeaturedContent data={dataF}/>)
-        } */}
-      {/* {
-          userInfo.userList &&
-          (<FeaturedContent data={userInfo?.userList}/>)
-        } */}
 
       {isLoading ? (
         <h1>Loading...</h1>

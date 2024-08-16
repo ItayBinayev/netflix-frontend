@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Store } from "../../Context/Store";
 import axios from "axios";
 import { USER_SIGNIN } from "../../Reducers/Actions";
+import { RegisterPathname } from "../../../paths";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -71,7 +72,7 @@ const LoginPage = () => {
                 First time using Netflix?
                 <span
                   className="text-white ml-1 hover:underline cursor-pointer"
-                  onClick={() => navigate("/register")}
+                  onClick={() => navigate(RegisterPathname)}
                 >
                   Create an account
                 </span>

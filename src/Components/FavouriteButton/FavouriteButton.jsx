@@ -17,11 +17,11 @@ const FavouriteButton = ({ movie, state, ctxDispatch }) => {
         id: userInfo._id,
         content: movie._id,
       });
-      if (isFavourite) {
-        await ctxDispatch({ type: REMOVE_FAVOURITE, payload: movie });
-      } else {
-        await ctxDispatch({ type: ADD_FAVOURITE, payload: movie });
-      }
+
+      await ctxDispatch({
+        type: isFavourite ? REMOVE_FAVOURITE : ADD_FAVOURITE,
+        payload: movie,
+      });
     } catch (error) {
       console.log(error);
     }

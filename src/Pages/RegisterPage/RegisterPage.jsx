@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { USER_SIGNIN } from "../../Reducers/Actions";
 import { Store } from "../../Context/Store";
 import axios from "axios";
+import { LoginPathname } from "../../../paths";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const RegisterPage = () => {
           </div>
           <div className="flex flex-row ml-auto gap-7 items-center">
             <button
-              onClick={() => navigate("/login")}
+              onClick={() => navigate(LoginPathname)}
               className="bg-red-600 p-3 text-white font-bold rounded-md hover:bg-red-700 transition flex flex-row justify-center items-center"
             >
               Sign in

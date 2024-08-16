@@ -5,6 +5,7 @@ import { GoMute, GoUnmute } from "react-icons/go";
 import ReactPlayer from "react-player/youtube";
 import FavouriteButton from "../FavouriteButton/FavouriteButton";
 import { Store } from "../../Context/Store";
+import { ContentPathname } from "../../../paths";
 
 const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
   const [showVideo, setShowVideo] = useState(false);
@@ -90,7 +91,7 @@ const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
           <div className="flex flex-row items-center space-x-3">
             <div
               className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
-              onClick={() => navigate("/content/" + data._id)}
+              onClick={() => navigate(ContentPathname + data._id)}
             >
               <BsFillPlayFill size={25} />
             </div>

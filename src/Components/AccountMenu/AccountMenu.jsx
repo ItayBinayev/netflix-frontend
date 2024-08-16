@@ -3,6 +3,7 @@ import proPic from "../../assets/BlueNetflix.jpg";
 import { useNavigate } from "react-router-dom";
 import { USER_SIGNOUT } from "../../Reducers/Actions";
 import { Store } from "../../Context/Store";
+import { LoginPathname } from "../../../paths";
 
 const AccountMenu = ({ visible }) => {
   if (!visible) return null;
@@ -11,7 +12,7 @@ const AccountMenu = ({ visible }) => {
   const navigate = useNavigate();
   const signOutHandler = async () => {
     await ctxDispatch({ type: USER_SIGNOUT });
-    navigate("/login");
+    navigate(LoginPathname);
   };
   return (
     <div className="bg-black w-56 absolute top-14 right-0 py-5 flex flex-col border-2 border-gray-800">
