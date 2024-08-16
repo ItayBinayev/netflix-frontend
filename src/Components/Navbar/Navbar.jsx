@@ -1,21 +1,20 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import logo from '../../assets/netflix-logo.svg'
-import profilePic from '../../assets/BlueNetflix.jpg'
-import NavbarItem from './NavbarItem'
-import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs'
-import MobileMenu from '../MobileMenu/MobileMenu'
-import AccountMenu from '../AccountMenu/AccountMenu'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useCallback, useEffect, useState } from "react";
+import logo from "../../assets/netflix-logo.svg";
+import profilePic from "../../assets/BlueNetflix.jpg";
+import NavbarItem from "./NavbarItem";
+import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs";
+import MobileMenu from "../MobileMenu/MobileMenu";
+import AccountMenu from "../AccountMenu/AccountMenu";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const TOP_OFFSET = 66;
 
-const Navbar = () => {
+const Navbar = ({ clickStateAccountMenu, setClickStateAccountMenu }) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
-  const { pathname } = useLocation()
-  const [lastURL, setLastURL] = useState("")
+  const { pathname } = useLocation();
+  const [lastURL, setLastURL] = useState("");
 
   const searchHandler = () => {
     setSearchActive(!searchActive);
@@ -23,47 +22,49 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     const handleScroll = () => {
-      if(window.scrollY >= TOP_OFFSET){
-        setShowBackground(true)
-      }
-      else{
+      if (window.scrollY >= TOP_OFFSET) {
+        setShowBackground(true);
+      } else {
         setShowBackground(false);
       }
-    }
-    window.addEventListener('scroll', handleScroll);
-    return() =>{
-      window.removeEventListener('scroll', handleScroll);
-    }
-  },[]);
-  
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const toggleMobileMenu = useCallback(() => {
     setShowMobileMenu((current) => !current);
-  },[]);
-  
-  const toggleAccountMenu = useCallback(() => {
-    setShowAccountMenu((current) => !current);
-  },[]);
+  }, []);
+
+  const toggleAccountMenu = useCallback(
+    (e) => {
+      e.stopPropagation(); // Prevent event from bubbling up
+      setClickStateAccountMenu((current) => !current);
+    },
+    [setClickStateAccountMenu]
+  );
 
   const onChangeHandler = (e) => {
-    if(e.target.value == '')
-    {
+    if (e.target.value == "") {
       navigate(lastURL);
-      setLastURL("")
-    }
-    else{
-      if(pathname != "/search")
-      {
-        setLastURL(pathname)
+      setLastURL("");
+    } else {
+      if (pathname != "/search") {
+        setLastURL(pathname);
       }
-      navigate("/search?query=" + e.target.value)
+      navigate("/search?query=" + e.target.value);
     }
-  }
-  
-  if(pathname == '/register' || pathname == '/login' || pathname == '/content')
-  {
+  };
+
+  if (
+    pathname == "/register" ||
+    pathname == "/login" ||
+    pathname == "/content"
+  ) {
     return null;
   }
 
@@ -89,11 +90,10 @@ const Navbar = () => {
         <img className="h-4 lg:h-7" src={logo} alt="" />
 
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
-          <NavbarItem title="Home" redirect={() => navigate('/')} />
-          <NavbarItem title="Series" redirect={() => navigate('/series')}/>
-          <NavbarItem title="Movies" redirect={() => navigate('/movies')}/>
-          <NavbarItem title="My List" redirect={() => navigate('/mylist')}/>
-
+          <NavbarItem title="Home" redirect={() => navigate("/")} />
+          <NavbarItem title="Series" redirect={() => navigate("/series")} />
+          <NavbarItem title="Movies" redirect={() => navigate("/movies")} />
+          <NavbarItem title="My List" redirect={() => navigate("/mylist")} />
         </div>
 
         <div
@@ -136,15 +136,15 @@ const Navbar = () => {
             </div>
             <BsChevronDown
               className={`text-white transition ${
-                showAccountMenu ? "rotate-180" : "rotate-0"
+                clickStateAccountMenu ? "rotate-180" : "rotate-0"
               }`}
             />
-            <AccountMenu visible={showAccountMenu} />
+            <AccountMenu visible={clickStateAccountMenu} />
           </div>
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

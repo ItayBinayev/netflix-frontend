@@ -6,14 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { USER_SIGNIN } from "../../Reducers/Actions";
 import { Store } from "../../Context/Store";
 import axios from "axios";
+import { LoginPathname } from "../../../paths";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const {state, dispatch: ctxDispatch} = useContext(Store);
-  
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+
   const [vis, setVis] = useState(false);
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const RegisterPage = () => {
           </div>
           <div className="flex flex-row ml-auto gap-7 items-center">
             <button
-              onClick={() => navigate("/login")}
+              onClick={() => navigate(LoginPathname)}
               className="bg-red-600 p-3 text-white font-bold rounded-md hover:bg-red-700 transition flex flex-row justify-center items-center"
             >
               Sign in
@@ -99,26 +100,26 @@ const RegisterPage = () => {
                     }
                   }}
                 >
-                  <MdOutlineEmail /> {">"}
+                  <MdOutlineEmail />
                 </button>
               ) : (
                 <button
                   className="bg-red-600 text-2xl text-white rounded-md w-40 hover:bg-red-700 transition flex flex-row justify-center items-center"
-                  onClick={ async () => {
+                  onClick={async () => {
                     if (passwordError) {
                       console.log(
                         "Please fill correct password before pressing the button!"
                       );
                     } else {
-                      try{
-
-                        const {data} = await axios.post("/users/signup", {email: email, password: password});
-                        await ctxDispatch({type: USER_SIGNIN, payload: data});
+                      try {
+                        const { data } = await axios.post("/users/signup", {
+                          email: email,
+                          password: password,
+                        });
+                        await ctxDispatch({ type: USER_SIGNIN, payload: data });
                         navigate("/");
-                      }
-                      catch(error)
-                      {
-                        console.log(error)
+                      } catch (error) {
+                        console.log(error);
                       }
                     }
                   }}

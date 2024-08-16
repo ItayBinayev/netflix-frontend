@@ -1,9 +1,9 @@
-import React from 'react'
-import { ADD_FAVOURITE, REMOVE_FAVOURITE } from '../../Reducers/Actions';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import { fetcherPost } from '../../libs/fetcher';
+import React from "react";
+import { ADD_FAVOURITE, REMOVE_FAVOURITE } from "../../Reducers/Actions";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { fetcherPost } from "../../libs/fetcher";
 
-const FavouriteButton = ({movie, state, ctxDispatch}) => {
+const FavouriteButton = ({ movie, state, ctxDispatch }) => {
   const { userInfo } = state;
 
   const isFavourite = userInfo?.userList.some(
@@ -11,24 +11,27 @@ const FavouriteButton = ({movie, state, ctxDispatch}) => {
   );
 
   const favButtonHandler = async () => {
-    try{
-      console.log(movie)
-      const res = await fetcherPost("/users/list",{id: userInfo._id,content: movie._id})
-      if(isFavourite)
-      {
-        await ctxDispatch({type: REMOVE_FAVOURITE, payload: movie})
-      }
-      else{
-        await ctxDispatch({type: ADD_FAVOURITE, payload: movie})
-      }
+    try {
+      console.log(movie);
+      const res = await fetcherPost("/users/list", {
+        id: userInfo._id,
+        content: movie._id,
+      });
 
+      await ctxDispatch({
+        type: isFavourite ? REMOVE_FAVOURITE : ADD_FAVOURITE,
+        payload: movie,
+      });
+    } catch (error) {
+      console.log(error);
     }
-    catch(error){
-      console.log(error)
-    }
-  }
+  };
   return (
-    <div onClick={() => {favButtonHandler()}} className='
+    <div
+      onClick={() => {
+        favButtonHandler();
+      }}
+      className="
     cursor-pointer
     group/item
     w-6
@@ -44,14 +47,15 @@ const FavouriteButton = ({movie, state, ctxDispatch}) => {
     transition
     hover:border-neutral-300
     gap-3
-    '>
-      {
-        isFavourite ?
-      <AiOutlineMinus className='text-white'/>
-      : <AiOutlinePlus className='text-white'/>
-      }
+    "
+    >
+      {isFavourite ? (
+        <AiOutlineMinus className="text-white" />
+      ) : (
+        <AiOutlinePlus className="text-white" />
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default FavouriteButton
+export default FavouriteButton;

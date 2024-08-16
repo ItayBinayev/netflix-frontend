@@ -5,6 +5,7 @@ import { GoMute, GoUnmute } from "react-icons/go";
 import ReactPlayer from "react-player/youtube";
 import FavouriteButton from "../FavouriteButton/FavouriteButton";
 import { Store } from "../../Context/Store";
+import { ContentPathname } from "../../../paths";
 
 const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
   const [showVideo, setShowVideo] = useState(false);
@@ -41,7 +42,6 @@ const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
       : "group-hover:translate-x-[-3vw]";
   }
 
- 
   return (
     <div
       className="group bg-zinc-900 relative w-full h-[10vw]"
@@ -89,14 +89,18 @@ const ContentCard = ({ data, isFirstInGroup, isLastInGroup }) => {
         </div>
         <div className="z-10 flex flex-col bg-zinc-800 gap-1 p-2 lg:p-4 absolute w-full transition shadow-md rounded-b-md">
           <div className="flex flex-row items-center space-x-3">
-          <div
-            className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
-            onClick={() => navigate("/content/" + data._id)}
-          >
-            <BsFillPlayFill size={25} />
-          </div>
-            <FavouriteButton movie={data} state={state} ctxDispatch={ctxDispatch}/>
+            <div
+              className="cursor-pointer w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300 text-black gap-3"
+              onClick={() => navigate(ContentPathname + data._id)}
+            >
+              <BsFillPlayFill size={25} />
             </div>
+            <FavouriteButton
+              movie={data}
+              state={state}
+              ctxDispatch={ctxDispatch}
+            />
+          </div>
           <div className="flex flex-row gap-2 items-center">
             <p className="text-green-400 font-semibold">{rating}% Match</p>
             <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>

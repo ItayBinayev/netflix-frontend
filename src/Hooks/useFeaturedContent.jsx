@@ -1,21 +1,23 @@
-import React from 'react'
+import React from "react";
 import useSWR from "swr";
-import fetcher from '../libs/fetcher';
-
+import fetcher from "../libs/fetcher";
 
 const useFeaturedContent = (type) => {
-    const { data , error , isLoading } = useSWR(`/content/featured/${type}` , fetcher,{
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
+  const { data, error, isLoading } = useSWR(
+    `/content/featured/${type}`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
     }
-    )
-    
+  );
+
   return {
     data,
     error,
-    isLoading
-  }
-}
+    isLoading,
+  };
+};
 
-export default useFeaturedContent
+export default useFeaturedContent;
